@@ -179,7 +179,7 @@ public class EslEvent {
 				}
 			} else {
 				// ignore blank line (always is one following the content-length
-				if (rawLine.length() > 0) {
+				if (!rawLine.isEmpty()) {
 					eventBody.add(rawLine);
 				}
 			}

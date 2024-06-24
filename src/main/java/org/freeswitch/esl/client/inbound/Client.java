@@ -15,7 +15,6 @@
  */
 package org.freeswitch.esl.client.inbound;
 
-import com.google.common.base.Throwables;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
@@ -62,10 +61,10 @@ public class Client implements IModEslApi {
     private CommandResponse authenticationResponse;
     private Optional<Context> clientContext = Optional.empty();
 
-    private static ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
+    private static final ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
             .setNameFormat("inbound-pool-%d").build();
 
-    private static ExecutorService callbackExecutor = new ThreadPoolExecutor(1, 1,
+    private static final ExecutorService callbackExecutor = new ThreadPoolExecutor(1, 1,
             0L, TimeUnit.MILLISECONDS,
             new LinkedBlockingQueue<>(100000), namedThreadFactory);
 

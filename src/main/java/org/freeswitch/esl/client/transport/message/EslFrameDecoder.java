@@ -151,7 +151,7 @@ public class EslFrameDecoder extends ReplayingDecoder<EslFrameDecoder.State> {
                         bodyBytes = null;
                     }
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    log.error("set bodyBytes for null,error=", ex);
                 }
 
                 // end of message

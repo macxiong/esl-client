@@ -27,6 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -112,12 +113,12 @@ public abstract class AbstractEslClientHandler extends SimpleChannelInboundHandl
 		switch (contentType) {
 			case Value.API_RESPONSE:
 				log.debug("Api response received [{}]", message);
-				apiCalls.poll().complete(message);
+				Objects.requireNonNull(apiCalls.poll()).complete(message);
 				break;
 
 			case Value.COMMAND_REPLY:
 				log.debug("Command reply received [{}]", message);
-				apiCalls.poll().complete(message);
+				Objects.requireNonNull(apiCalls.poll()).complete(message);
 				break;
 
 			case Value.AUTH_REQUEST:
